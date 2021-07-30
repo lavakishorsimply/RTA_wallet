@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/sample.css'%}" rel="stylesheet">
+</head>
+<b>
+<!--<h1 style="background-color:grey;text-align :center;" > Welcome To RTA-m Wallet</h1>-->
+<body style="background-image: url('{% static 'image/rt1.jpg' %}');background-repeat:no-repeat;background-size: 1400px 600px;">
+
+<div  class="sample">
+
+
+<form action="" method="POST" novalidate>
+
+    {% csrf_token %}
+
+
+
+    {% if form.non_field_error %}
+      {% for error  in  form.non_field_error %}
+    <p class="er">{{error}}</p>
+
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+    {% endfor %}
+      <input type="submit" class="btn btn-success" value="submit">
+
+
+</form>
+
+{% if messages %}
+{% for msg in messages %}
+<small {%if messages.tags %} class="{{message.tags}}"{% endif %}>{{msg}}</small>
+{% endfor %}
+{% endif %}
+
+      <a  href="{% url 'login_page' %}"> <input type="submit" class="btn btn-success" value="login"></a>
+
+</div>
+</b>
+</body>
+
+</html>
